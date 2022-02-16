@@ -1,0 +1,20 @@
+---
+layout: layouts/home.njk
+eleventyNavigation:
+  key: Masks
+permalink: "/masks/"
+---
+
+{% set masks = collections[ 'masks' ] %}
+{% set postslist = [] %}
+ {% set brandslist = [] %}
+
+{% for post in masks %}
+   {% if post.data.brand not in brandslist %}
+     
+     {% set postslist = (postslist.push(post), postslist) %}
+    {% set brandslist = (brandslist.push(post.data.brand), brandslist) %}
+   {% endif %}
+{% endfor %}
+
+{% include "brandslist.njk" %}

@@ -1,0 +1,11 @@
+<div reversed class="postlist">
+{% for post in postslist | reverse  %}
+  <div class="">
+    
+    <div>
+    <small><a href="/masks/{{post.data.brand|slug}}">{{post.data.brand}}</a></small>
+    </div>
+    
+  </div>
+{% endfor %}
+</div>

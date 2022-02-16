@@ -1,16 +1,27 @@
 ---
 layout: layouts/base.njk
-templateClass: tmpl-post
+permalink: /masks/{% if brand %}{{brand|slug|safe}}/{% endif%}{%if set%}{{set|slug|safe}}/{%endif%}{%if name%}{{name|slug|safe}}/{%endif%}index.html
 ---
-<h1>{{ title }}</h1>
+<div class="row">
+<div class="col-sm-4">
+        <img src="/img/masks/{{brand|slug}}/{{set|slug}}/{{name|slug}}.jpg" alt="{# {{brand}} {{set}} {{name}} #}">
+</div>
+<div class="col-sm-8">
+<h4>
+{{brand}} 
+</h4>
+<h2>{{set}} {{name}}</h2>
 
-<time datetime="{{ page.date | htmlDateString }}">{{ page.date | readableDate }}</time>
+{#
 {%- for tag in tags | filterTagList -%}
 {%- set tagUrl %}/tags/{{ tag | slug }}/{% endset -%}
 <a href="{{ tagUrl | url }}" class="post-tag">{{ tag }}</a>
 {%- endfor %}
+#}
 
 {{ content | safe }}
+
+</div>
 
 {%- if collections.posts %}
 {%- set nextPost = collections.posts | getNextCollectionItem(page) %}

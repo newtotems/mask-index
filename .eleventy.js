@@ -28,6 +28,8 @@ module.exports = function(eleventyConfig) {
     return DateTime.fromJSDate(dateObj, {zone: 'utc'}).toFormat('yyyy-LL-dd');
   });
 
+
+
   // Get the first `n` elements of a collection.
   eleventyConfig.addFilter("head", (array, n) => {
     if(!Array.isArray(array) || array.length === 0) {
@@ -60,6 +62,22 @@ module.exports = function(eleventyConfig) {
 
     return filterTagList([...tagSet]);
   });
+
+  module.exports = function(eleventyConfig) {
+    // Unsorted items (in whatever order they were added)
+    eleventyConfig.addCollection("allMasks", function(collectionApi) {
+      return collectionApi.getAll();
+    });
+  };
+
+// Returns a collection of blog posts in reverse date order
+module.exports = function(eleventyConfig) {
+
+eleventyConfig.addCollection('masks', collection => {
+  return [...collection.getFilteredByGlob('./masks/*.md')].reverse();
+});
+
+};
 
   // Customize Markdown library and settings:
   let markdownLibrary = markdownIt({
